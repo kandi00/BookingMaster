@@ -16,5 +16,7 @@ namespace BookingMaster.Data.Model
         public int Total_Number_Of_Rooms { get; set; }
         public int Number_Of_Free_Rooms { get; set; }
         public bool IsPublished { get; set; }
+
+        public ICollection<Room> Rooms { get; set; }
     }
 }

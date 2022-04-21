@@ -33,5 +33,45 @@ namespace BookingMaster.Services
                 throw new GetException(ex.Message);
             }
         }
+
+        public async Task<AccommodationsResponse> GetAccomodationsByLocation(string Location)
+        {
+            try
+            {
+                AccommodationsResponse response = new AccommodationsResponse();
+                response.Accomodations = await _accomodationRepository.GetAccomodationsByLocation(Location); ;
+
+                if (response.Accomodations != null)
+                {
+                    response.Code = 200;
+                    response.Message = APISuccessCodes.GET_ACCOMMODATION_SUCCESS;
+                }
+                return response;
+            }
+            catch (GetRequestException ex)
+            {
+                throw new GetException(ex.Message);
+            }
+        }
+
+        public async Task<AccommodationsResponse> GetAccomodationsByName(string? Name)
+        {
+            try
+            {
+                AccommodationsResponse response = new AccommodationsResponse();
+                response.Accomodations = await _accomodationRepository.GetAccomodationsByName(Name);
+
+                if (response.Accomodations != null)
+                {
+                    response.Code = 200;
+                    response.Message = APISuccessCodes.GET_ACCOMMODATION_SUCCESS;
+                }
+                return response;
+            }
+            catch (GetRequestException ex)
+            {
+                throw new GetException(ex.Message);
+            }
+        }
     }
 }

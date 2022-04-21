@@ -44,6 +44,61 @@ namespace BookingMaster.Data
                         });
                     context.SaveChanges();
                 }
+
+                if (!context.Rooms.Any())
+                {
+                    context.Rooms.AddRangeAsync(
+                        new Room()
+                        {
+                            Price = 80,
+                            Currency = "EURO",
+                            Capacity = 2,
+                            AccommodationId = 1
+                        },
+                       new Room()
+                       {
+                           Price = 120,
+                           Currency = "EURO",
+                           Capacity = 3,
+                           AccommodationId = 1
+                       },
+                       new Room()
+                       {
+                           Price = 100,
+                           Currency = "EURO",
+                           Capacity = 2,
+                           AccommodationId = 1
+                       },
+                       new Room()
+                       {
+                           Price = 100,
+                           Currency = "EURO",
+                           Capacity = 2,
+                           AccommodationId = 2
+                       },
+                       new Room()
+                       {
+                           Price = 100,
+                           Currency = "EURO",
+                           Capacity = 2,
+                           AccommodationId = 2
+                       },
+                       new Room()
+                       {
+                           Price = 200,
+                           Currency = "EURO",
+                           Capacity = 4,
+                           AccommodationId = 3
+                       },
+                       new Room()
+                       {
+                           Price = 100,
+                           Currency = "EURO",
+                           Capacity = 2,
+                           AccommodationId = 3
+                       });
+                    context.SaveChanges();
+                }
             }
         }
 

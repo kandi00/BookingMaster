@@ -39,5 +39,46 @@ namespace BookingMaster.Controllers
                 return BadRequest(errorResponse);
             }
         }
+
+        [HttpGet, Route("location")]
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByLocation([FromHeader] string? Location)
+        {
+            try
+            {
+                AccommodationsResponse result = await _accomodationService.GetAccomodationsByLocation(Location);
+                return Ok(result);
+
+            }
+            catch (GetException ex)
+            {
+                AccommodationsResponse errorResponse = new AccommodationsResponse()
+                {
+                    Code = 400,
+                    Message = APIErrorCodes.GET_REQUEST_EXCEPTION_MESSAGE + ex.Message
+                };
+                return BadRequest(errorResponse);
+            }
+        }
+
+        [HttpGet, Route("name")]
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByName([FromHeader] string? Name)
+        {
+            try
+            {
+                AccommodationsResponse result = await _accomodationService.GetAccomodationsByName(Name);
+                return Ok(result);
+
+            }
+            catch (GetException ex)
+            {
+                AccommodationsResponse errorResponse = new AccommodationsResponse()
+                {
+                    Code = 400,
+                    Message = APIErrorCodes.GET_REQUEST_EXCEPTION_MESSAGE + ex.Message
+                };
+                return BadRequest(errorResponse);
+            }
+        }
+
     }
 }
