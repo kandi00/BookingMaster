@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "9V0fFfPAIKlUD5SW7bNRJHwE2kfuiwdUHNuiH+g06ug=",
+  "Source": "ApiHeroku",
+  "BasePath": "_content/ApiHeroku",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiHeroku", "ApiHeroku\ApiHeroku.csproj", "{021CDC70-CAC9-40D2-A35A-1FFF93B8B34F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{021CDC70-CAC9-40D2-A35A-1FFF93B8B34F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021CDC70-CAC9-40D2-A35A-1FFF93B8B34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021CDC70-CAC9-40D2-A35A-1FFF93B8B34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021CDC70-CAC9-40D2-A35A-1FFF93B8B34F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBD194DB-D11E-4572-8CFD-F233C6EA604C}
+	EndGlobalSection
+EndGlobal
