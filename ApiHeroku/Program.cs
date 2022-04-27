@@ -1,4 +1,6 @@
 using ApiHeroku.Data;
+using ApiHeroku.Repositories;
+using ApiHeroku.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +40,10 @@ else
     defaultConnectionString = $"Host={host};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
 }
 
+builder.Services.AddScoped<IAccommodationRepository, AccommodationRepository>();
+builder.Services.AddScoped<IAccommodationService, AccommodationService>();
+
+
 builder.Services.AddDbContext<AppDbContext>(options =>
    options.UseNpgsql(defaultConnectionString));
 
@@ -68,5 +74,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+AppDbInitializer.Seed(app);
 
 app.Run();
