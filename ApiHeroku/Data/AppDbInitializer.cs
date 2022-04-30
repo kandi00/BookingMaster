@@ -9,6 +9,23 @@ namespace ApiHeroku.Data
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+
+                if (!context.UserInfosExample.Any())
+                {
+                    context.UserInfosExample.AddRangeAsync(
+                        new UserExample() 
+                        { 
+                            
+                            DisplayName = "Admin",
+                            UserName = "admin",
+                            Email = "admin@abc.com",
+                            Password = "admin",
+                            
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
                 if (!context.Accomodations.Any())
                 {
                     context.Accomodations.AddRangeAsync(
