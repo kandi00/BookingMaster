@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.bookingmaster.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_slideshow"
+            app:destination="@id/nav_search_for_accommodation" />
+        <action
+            android:id="@+id/action_nav_home_to_discoverPlacesFragment"
+            app:destination="@id/discoverPlacesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_accommodation"
+        android:name="com.example.bookingmaster.ui.gallery.AccommodationsFragment"
+        android:label="Accommodations"
+        tools:layout="@layout/fragment_accommodation">
+        <action
+            android:id="@+id/action_nav_gallery_to_roomFragment"
+            app:destination="@id/roomFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_search_for_accommodation"
+        android:name="com.example.bookingmaster.ui.slideshow.SlideshowFragment"
+        android:label="Search for accommodation"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.example.bookingmaster.ui.gallery.RoomFragment"
+        android:label="Find your room"
+        tools:layout="@layout/fragment_room" />
+    <fragment
+        android:id="@+id/discoverPlacesFragment"
+        android:name="com.example.bookingmaster.ui.DiscoverPlacesFragment"
+        android:label="Discover places"
+        tools:layout="@layout/fragment_discover_places">
+        <action
+            android:id="@+id/action_discoverPlacesFragment_to_nav_accommodation"
+            app:destination="@id/nav_accommodation" />
+    </fragment>
+</navigation>

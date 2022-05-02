@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:id="@+id/card_view"
+card_view:cardCornerRadius="5dp"
+android:layout_marginStart="25dp"
+android:layout_marginEnd="25dp"
+android:layout_marginTop="10dp"
+android:layout_marginBottom="10dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_image_of_the_room"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/room"
+        android:layout_marginTop="10dp"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_call_icon_room"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/ic_baseline_house_24"
+        android:clickable="true"
+        android:focusable="true"
+        card_view:layout_constraintStart_toEndOf="@id/iv_image_of_the_room"
+        card_view:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:paddingTop="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textColor="@color/grey"
+        card_view:layout_constraintStart_toEndOf="@id/ib_call_icon_room"
+        card_view:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/ib_people_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/ic_baseline_people_24"
+        android:clickable="true"
+        android:focusable="true"
+        card_view:layout_constraintStart_toEndOf="@id/iv_image_of_the_room"
+        card_view:layout_constraintTop_toBottomOf="@id/ib_call_icon_room"/>
+
+    <TextView
+        android:id="@+id/tv_room_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textColor="@color/grey"
+        card_view:layout_constraintStart_toEndOf="@id/ib_people_icon"
+        card_view:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+    <Button
+        android:id="@+id/button_book_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="@color/HonoluluBlue"
+        android:text="Book now"
+        android:textAllCaps="false"
+        android:textColor="@color/dirtyWhite"
+        android:textSize="14sp"
+        card_view:cornerRadius="999dp"
+        card_view:layout_constraintStart_toEndOf="@id/iv_image_of_the_room"
+        card_view:layout_constraintTop_toBottomOf="@+id/ib_people_icon"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
