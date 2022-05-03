@@ -19,6 +19,7 @@ namespace ApiHeroku.Data
 
         public DbSet<Accommodation> Accomodations { get; set; } //Accomodation table
         public DbSet<Room> Rooms { get; set; } //Room table
+        public DbSet<Booking> Bookings { get; set; } // Booking table
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +48,18 @@ namespace ApiHeroku.Data
                 .HasOne(a => a.Accommodation)
                 .WithMany(r => r.Rooms)
                 .HasForeignKey(ai => ai.AccommodationId);
+
+
+            //configures many-to-many relationship between users and rooms
+            modelBuilder.Entity<Booking>()
+                .HasOne(r => r.Room)
+                .WithMany(b => b.Bookings)
+                .HasForeignKey(ri => ri.RoomId);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(r => r.UserExample)
+                .WithMany(b => b.Bookings)
+                .HasForeignKey(ri => ri.UserId);
 
             //for authentication
             OnModelCreatingPartial(modelBuilder);

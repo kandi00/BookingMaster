@@ -14,5 +14,8 @@ namespace ApiHeroku.Data.Model
 
         public int AccommodationId { get; set; }
         public Accommodation Accommodation { get; set; }
+
+        //many-to-many
+        public ICollection<Booking> Bookings { get; set; }
     }
 }
