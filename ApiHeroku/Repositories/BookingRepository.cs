@@ -24,7 +24,7 @@ namespace ApiHeroku.Repositories
                 if (!bookedRooms.Contains(newBooking.RoomId))
                 {
                     var response = _context.Bookings.Add(newBooking);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                     return response.Entity;
                 }
                 else
