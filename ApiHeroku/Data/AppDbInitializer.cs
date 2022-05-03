@@ -26,20 +26,6 @@ namespace ApiHeroku.Data
                     context.SaveChanges();
                 }
 
-                if (!context.Bookings.Any())
-                {
-                    context.Bookings.AddRangeAsync(
-                        new Booking()
-                        {
-                            from_date = DateTime.Now,
-                            to_date = DateTime.Now.AddDays(4),
-                            RoomId = 1,
-                            UserId = 1
-                        }
-                    );
-                    context.SaveChanges();
-                }
-
                 if (!context.Accomodations.Any())
                 {
                     context.Accomodations.AddRangeAsync(
