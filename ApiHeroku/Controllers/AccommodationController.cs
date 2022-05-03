@@ -3,10 +3,13 @@ using ApiHeroku.Data.Response;
 using ApiHeroku.Exceptions;
 using ApiHeroku.Services;
 using ApiHeroku.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiHeroku.Controllers
 {
+
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AccommodationController : ControllerBase

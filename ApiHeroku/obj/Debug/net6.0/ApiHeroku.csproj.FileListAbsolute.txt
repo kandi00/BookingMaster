@@ -793,3 +793,4 @@ C:\Andi\III.EV\.Net\API_HEROKU\ApiHeroku\obj\Debug\net6.0\refint\ApiHeroku.dll
 C:\Andi\III.EV\.Net\API_HEROKU\ApiHeroku\obj\Debug\net6.0\ApiHeroku.pdb
 C:\Andi\III.EV\.Net\API_HEROKU\ApiHeroku\obj\Debug\net6.0\ApiHeroku.genruntimeconfig.cache
 C:\Andi\III.EV\.Net\API_HEROKU\ApiHeroku\obj\Debug\net6.0\ref\ApiHeroku.dll
+C:\Users\Szilard\source\repos\BookingMaster\ApiHeroku\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
