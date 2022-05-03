@@ -21,16 +21,16 @@ namespace ApiHeroku.Repositories
                 var bookedRooms = _context.Bookings
                     .Where(a => (a.from_date <= newBooking.from_date && newBooking.from_date < a.to_date) || (a.from_date < newBooking.to_date && newBooking.to_date <= a.to_date))
                     .Select(a => a.RoomId);
-                if (!bookedRooms.Contains(newBooking.RoomId))
-                {
+                //if (!bookedRooms.Contains(newBooking.RoomId))
+                //{
                     var response = _context.Bookings.Add(newBooking);
                     _context.SaveChanges();
                     return response.Entity;
-                }
-                else
-                {
-                    throw new PostRequestException("This room is not free!");
-                }
+                //}
+                //else
+                //{
+                //    throw new PostRequestException("This room is not free!");
+                //}
             }
             catch (Exception ex)
             {
