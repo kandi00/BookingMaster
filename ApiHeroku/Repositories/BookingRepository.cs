@@ -1,6 +1,6 @@
 ﻿using ApiHeroku.Data;
 using ApiHeroku.Data.Model;
-using ApiHeroku.Data.ViewModel;
+using ApiHeroku.Exceptions;
 
 namespace ApiHeroku.Repositories
 {
@@ -13,18 +13,29 @@ namespace ApiHeroku.Repositories
             _context = context;
         }
 
-        public void AddNewBooking(BookingViewModel newBooking)
+        public async Task<Booking> AddNewBooking(Booking newBooking)
         {
-            Booking booking = new Booking()
+            try
             {
-                from_date = newBooking.from_date,
-                to_date = newBooking.to_date,
-                booking_date = DateTime.Now,
-                RoomId = newBooking.RoomId,
-                UserId = newBooking.UserId
-            };
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
+                //get booked rooms
+                var bookedRooms = _context.Bookings
+                    .Where(a => (a.from_date <= newBooking.from_date && newBooking.from_date < a.to_date) || (a.from_date < newBooking.to_date && newBooking.to_date <= a.to_date))
+                    .Select(a => a.RoomId);
+                if (!bookedRooms.Contains(newBooking.RoomId))
+                {
+                    var response = _context.Bookings.Add(newBooking);
+                    await _context.SaveChangesAsync();
+                    return response.Entity;
+                }
+                else
+                {
+                    throw new PostRequestException("This room is not free!");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new PostRequestException(ex.Message);
+            }
         }
 
     }

@@ -1,5 +1,9 @@
-﻿using ApiHeroku.Data.ViewModel;
+﻿using ApiHeroku.Data.Model;
+using ApiHeroku.Data.Response;
+using ApiHeroku.Data.ViewModel;
+using ApiHeroku.Exceptions;
 using ApiHeroku.Services;
+using ApiHeroku.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiHeroku.Controllers
@@ -17,9 +21,22 @@ namespace ApiHeroku.Controllers
         }
 
         [HttpPost(Name = "add-new-booking")]
-        public void AddNewBooking(BookingViewModel newBooking)
+        public async Task<ActionResult<Booking>> AddNewBooking([FromBody] BookingViewModel newBooking)
         {
-            _bookingService.AddNewBooking(newBooking);
+            try
+            {
+                BookingResponse result = await _bookingService.AddNewBooking(newBooking);
+                return Ok(result);
+            }
+            catch (PostRequestException ex)
+            {
+                BookingResponse errorResponse = new BookingResponse()
+                {
+                    Code = 500,
+                    Message = APIErrorCodes.POST_REQUEST_EXCEPTION_MESSAGE + ex.Message
+                };
+                return BadRequest(errorResponse);
+            }
         }
     }
 }

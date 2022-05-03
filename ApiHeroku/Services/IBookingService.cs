@@ -1,9 +1,10 @@
-﻿using ApiHeroku.Data.ViewModel;
+﻿using ApiHeroku.Data.Response;
+using ApiHeroku.Data.ViewModel;
 
 namespace ApiHeroku.Services
 {
     public interface IBookingService
     {
-        public void AddNewBooking(BookingViewModel newBooking);
+        public Task<BookingResponse> AddNewBooking(BookingViewModel newBooking);
     }
 }

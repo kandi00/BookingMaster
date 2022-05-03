@@ -1,9 +1,9 @@
-﻿using ApiHeroku.Data.ViewModel;
+﻿using ApiHeroku.Data.Model;
 
 namespace ApiHeroku.Repositories
 {
     public interface IBookingRepository
     {
-        public void AddNewBooking(BookingViewModel newBooking);
+        public Task<Booking> AddNewBooking(Booking newBooking);
     }
 }
