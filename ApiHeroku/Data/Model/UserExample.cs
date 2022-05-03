@@ -7,7 +7,7 @@ namespace ApiHeroku.Data.Model
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        public int ID { get; set; }
         public string? DisplayName { get; set; }
         public string? UserName { get; set; }
         public string? Email { get; set; }

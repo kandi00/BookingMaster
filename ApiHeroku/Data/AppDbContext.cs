@@ -37,7 +37,7 @@ namespace ApiHeroku.Data
                 entity.Property(e => e.CreatedDate).IsUnicode(false);
             });*/
             modelBuilder.Entity<UserExample>()
-                .HasKey(e => e.UserId);
+                .HasKey(e => e.ID);
             //for authentication
 
 

@@ -8,7 +8,7 @@ using ApiHeroku.Data.Model;
 
 namespace ApiHeroku.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserExampleController : ControllerBase
     {
@@ -19,22 +19,24 @@ namespace ApiHeroku.Controllers
             _context = context;
         }
 
-        // GET: api/ToDoes
+        // GET: api/user
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserExample>>> GetToDos()
+        public async Task<ActionResult<IEnumerable<UserExample>>> GetUsers()
         {
             return await _context.UserInfosExample.ToListAsync();
         }
 
-        // POST: api/ToDoes
+
+        //registration
+        // POST: api/user
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<UserExample>> PostToDo(UserExample userExample)
+        public async Task<ActionResult<UserExample>> PostUser(UserExample userExample)
         {
             _context.UserInfosExample.Add(userExample);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUserExample", new { id = userExample.UserId }, userExample);
+            return CreatedAtAction("GetUserExample", new { id = userExample.ID }, userExample);
         }
     }
 
