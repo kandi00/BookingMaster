@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiHeroku.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AccommodationController : ControllerBase
