@@ -28,10 +28,16 @@ namespace ApiHeroku.Repositories
             }
         }
 
-        public async Task<IEnumerable<Accommodation>> GetAccomodationsByLocation(string? Location)
+        public async Task<IEnumerable<Accommodation>> GetAccomodationsByLocation(string? Location, DateTime FromDate, DateTime ToDate)
         {
             try
             {
+                //get booked rooms
+                var bookedRooms = _context.Bookings
+                    .Where(a => (a.from_date <= FromDate && FromDate < a.to_date) || (a.from_date < ToDate && ToDate <= a.to_date))
+                    .Select(a => a.RoomId)
+                    .ToListAsync().Result;
+                //get accommodations with free rooms
                 var accommodations = _context.Accomodations
                    .Select(a =>
                    new Accommodation
@@ -43,7 +49,8 @@ namespace ApiHeroku.Repositories
                        Location = a.Location,
                        Total_Number_Of_Rooms = a.Total_Number_Of_Rooms,
                        IsPublished = a.IsPublished,
-                       Rooms = a.Rooms.Select(p => p).ToList()
+                       Rooms = a.Rooms.Select(r => r)
+                                      .Where(r => !bookedRooms.Contains(r.ID)).ToList() //free rooms
                    })
                    .Where(a => a.Location.Equals(Location)).ToListAsync().Result;
                 return accommodations;
@@ -54,10 +61,15 @@ namespace ApiHeroku.Repositories
             }
         }
 
-        public async Task<IEnumerable<Accommodation>> GetAccomodationsByName(string? Name)
+        public async Task<IEnumerable<Accommodation>> GetAccomodationsByName(string? Name, DateTime FromDate, DateTime ToDate)
         {
             try
             {
+                //get booked rooms
+                var bookedRooms = _context.Bookings
+                    .Where(a => (a.from_date <= FromDate && FromDate < a.to_date) || (a.from_date < ToDate && ToDate <= a.to_date))
+                    .Select(a => a.RoomId)
+                    .ToListAsync().Result;
                 var accommodations = _context.Accomodations
                    .Select(a =>
                    new Accommodation
@@ -68,7 +80,8 @@ namespace ApiHeroku.Repositories
                        Location = a.Location,
                        Total_Number_Of_Rooms = a.Total_Number_Of_Rooms,
                        IsPublished = a.IsPublished,
-                       Rooms = a.Rooms.Select(p => p).ToList()
+                       Rooms = a.Rooms.Select(p => p)
+                                      .Where(r => !bookedRooms.Contains(r.ID)).ToList() //free rooms.ToList()
                    })
                    .Where(a => a.Name.Contains(Name));
                 return accommodations.ToListAsync().Result;
