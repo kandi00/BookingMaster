@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookingmaster.api.BookingMasterRepository
 import com.example.bookingmaster.model.Accommodation
+import com.example.bookingmaster.model.BookingRequest
+import com.example.bookingmaster.model.Room
 import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: BookingMasterRepository, private val sharedPref: SharedPreferences) : ViewModel() {
@@ -18,6 +20,8 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
     var accommodationsDebrecen: MutableLiveData<ArrayList<Accommodation>> = MutableLiveData()
     var currentAccommodation: Accommodation? = null
     var token: String
+    var currentRoom: Room? = null
+
     init {
 
         token = "Bearer ${sharedPref.getString("token", "").toString()}"
@@ -57,5 +61,13 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
             }
         }
     }
+
+    fun addBooking(booking: BookingRequest) {
+        viewModelScope.launch {
+            val result = repository.addBooking(booking)
+            Log.i("result", result.toString())
+        }
+    }
+
 
 }

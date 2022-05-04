@@ -1,30 +1,34 @@
-package com.example.bookingmaster.ui.gallery
+package com.example.bookingmaster.ui.accommodation
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookingmaster.R
-import com.example.bookingmaster.adapter.AccommodationDataAdapter
-import com.example.bookingmaster.databinding.FragmentAccommodationBinding
+import com.example.bookingmaster.adapter.RoomDataAdapter
+import com.example.bookingmaster.databinding.FragmentRoomBinding
 import com.example.bookingmaster.model.Accommodation
+import com.example.bookingmaster.model.Room
 import com.example.bookingmaster.viewmodel.ListViewModel
 
-class AccommodationsFragment : Fragment(),  AccommodationDataAdapter.OnItemClickListener{
-    private var _binding: FragmentAccommodationBinding? = null
+class RoomFragment : Fragment(), RoomDataAdapter.OnItemClickListener {
+    private var _binding: FragmentRoomBinding? = null
     private val binding get() = _binding!!
     private lateinit var fragment : View
     private lateinit var listViewModel: ListViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AccommodationDataAdapter
+    private lateinit var adapter: RoomDataAdapter
+    private var currentAccommodation : Accommodation? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         listViewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
+        currentAccommodation = listViewModel.currentAccommodation
     }
 
     override fun onCreateView(
@@ -32,19 +36,15 @@ class AccommodationsFragment : Fragment(),  AccommodationDataAdapter.OnItemClick
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAccommodationBinding.inflate(inflater, container, false)
+        _binding = FragmentRoomBinding.inflate(inflater, container, false)
         fragment = binding.root
-        recyclerView = binding.recyclerView
+        recyclerView = binding.recyclerViewRooms
         setupRecyclerView()
-        listViewModel.accommodations.observe(viewLifecycleOwner){
-            adapter.setData(listViewModel.accommodations.value as ArrayList<Accommodation>)
-            adapter.notifyDataSetChanged()
-        }
         return fragment
     }
 
     private fun setupRecyclerView(){
-        adapter = AccommodationDataAdapter(ArrayList<Accommodation>(), this)
+        adapter = RoomDataAdapter(currentAccommodation!!.rooms as ArrayList<Room>, this)
         recyclerView.adapter = adapter
     }
 
@@ -53,8 +53,8 @@ class AccommodationsFragment : Fragment(),  AccommodationDataAdapter.OnItemClick
         _binding = null
     }
 
-    override fun onItemClick(accommodation: Accommodation) {
-        listViewModel.currentAccommodation = accommodation
-        findNavController().navigate(R.id.action_nav_gallery_to_roomFragment)
+    override fun onBookNowButtonClick(room: Room) {
+        listViewModel.currentRoom = room
+        findNavController().navigate(R.id.action_roomFragment_to_bookFragment)
     }
 }
