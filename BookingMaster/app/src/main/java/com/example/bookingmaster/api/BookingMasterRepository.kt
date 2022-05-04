@@ -8,8 +8,8 @@ import retrofit2.http.Header
 
 class BookingMasterRepository {
 
-    suspend fun getAccommodationsByLocation(@Header("location") location: String): AccommodationResponse {
-        return RetrofitInstance.api.getAccommodationsByLocation(location)
+    suspend fun getAccommodationsByLocation(@Header ("Authorization") token: String,@Header("location") location: String): AccommodationResponse {
+        return RetrofitInstance.api.getAccommodationsByLocation(token,location)
     }
 
     suspend fun login(request: LoginRequest) : String {

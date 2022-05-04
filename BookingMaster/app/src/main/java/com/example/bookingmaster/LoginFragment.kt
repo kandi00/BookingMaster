@@ -101,8 +101,8 @@ class LoginFragment : Fragment() {
 
     private fun fillInLoginDataIfExist() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        val email = sharedPref?.getString(getString(R.string.email_sharedpreferences_string_resource), "").toString()
-        val password = sharedPref?.getString(getString(R.string.password_sharedpreferences_string_resource), "").toString()
+        val email = sharedPref?.getString("email", "").toString()
+        val password = sharedPref?.getString("password", "").toString()
         Log.d("xxx", "1 from sharedPref username ${email}")
         Log.d("xxx", "1 from sharedPref password ${password}")
         if (!email.isEmpty() && !password.isEmpty()){

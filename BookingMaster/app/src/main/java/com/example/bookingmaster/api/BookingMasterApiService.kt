@@ -12,7 +12,7 @@ import retrofit2.http.POST
 interface BookingMasterApiService {
     /** get accommodations */
     @GET(BackendConstants.ACCOMMODATIONS_BY_LOCATION)
-    suspend fun getAccommodationsByLocation(@Header("location") location: String): AccommodationResponse
+    suspend fun getAccommodationsByLocation(@Header("Authorization") token: String,@Header("location") location: String): AccommodationResponse
 
     /** login */
     @POST(BackendConstants.LOGIN_URL)

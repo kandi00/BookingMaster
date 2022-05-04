@@ -1,5 +1,6 @@
 package com.example.bookingmaster.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,10 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ListViewModelFactory(BookingMasterRepository())
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+
+        val factory = ListViewModelFactory(BookingMasterRepository(), sharedPref)
         listViewModel = ViewModelProvider(requireActivity(), factory).get(ListViewModel::class.java)
     }
 
