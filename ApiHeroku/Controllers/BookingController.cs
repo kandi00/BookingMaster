@@ -20,7 +20,7 @@ namespace ApiHeroku.Controllers
             _bookingService = bookingService;
         }
 
-        [HttpPost(Name = "add-new-booking")]
+        [HttpPost,Route("add-new-booking")]
         public async Task<ActionResult<Booking>> AddNewBooking([FromBody] BookingViewModel newBooking)
         {
             try
