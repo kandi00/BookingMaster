@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Szilard\\source\\repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj": {}
+    "C:\\Users\\Szilard\\Source\\Repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Szilard\\source\\repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj": {
+    "C:\\Users\\Szilard\\Source\\Repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Szilard\\source\\repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj",
+        "projectUniqueName": "C:\\Users\\Szilard\\Source\\Repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj",
         "projectName": "ApiHeroku",
-        "projectPath": "C:\\Users\\Szilard\\source\\repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj",
+        "projectPath": "C:\\Users\\Szilard\\Source\\Repos\\BookingMaster\\ApiHeroku\\ApiHeroku.csproj",
         "packagesPath": "C:\\Users\\Szilard\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Szilard\\source\\repos\\BookingMaster\\ApiHeroku\\obj\\",
+        "outputPath": "C:\\Users\\Szilard\\Source\\Repos\\BookingMaster\\ApiHeroku\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Szilard\\AppData\\Roaming\\NuGet\\NuGet.Config",

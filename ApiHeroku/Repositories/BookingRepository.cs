@@ -1,6 +1,7 @@
 ﻿using ApiHeroku.Data;
 using ApiHeroku.Data.Model;
 using ApiHeroku.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiHeroku.Repositories
 {
@@ -38,5 +39,70 @@ namespace ApiHeroku.Repositories
             }
         }
 
+        
+
+        public async Task<IEnumerable<Booking>> GetBookingsByUser(string? Email)
+        {
+            try
+            {
+
+
+                var user = _context.UserInfosExample.Where(a => a.Email == Email).FirstOrDefault();
+                var bookings = _context.Bookings.Select(a => new Booking { 
+                   ID = a.ID,
+                   from_date = a.from_date,
+                   to_date = a.to_date,
+                   UserId = a.UserId,
+                   RoomId = a.RoomId,
+                   booking_date = a.booking_date,
+                   UserExample = a.UserExample,
+                   Room = a.Room,
+                   
+                }).Where(a => a.UserId == user.ID).ToListAsync().Result;
+
+                return bookings;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new PostRequestException(ex.Message);
+            }
+        }
+
+        /*// DELETE: api/ToDoes/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteToDo(int id)
+        {
+            var toDo = await _context.ToDos.FindAsync(id);
+            if (toDo == null)
+            {
+                return NotFound();
+            }
+
+            _context.ToDos.Remove(toDo);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool ToDoExists(int id)
+        {
+            return _context.ToDos.Any(e => e.Id == id);
+        }*/
+        public async Task<bool> DeleteBooking(int ID)
+        {
+            var booking = await _context.Bookings.FindAsync(ID);
+            if(booking == null)
+            {
+                return false;
+            }
+
+            _context.Bookings.Remove(booking);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
+
+    
 }

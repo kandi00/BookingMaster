@@ -42,5 +42,75 @@ namespace ApiHeroku.Services
                 throw new PostException(ex.Message);
             }
         }
+
+        
+
+        public async Task<BookingsByUserResponse> GetBookingsByUser(string? Email)
+        {
+            try
+            {
+                BookingsByUserResponse response = new BookingsByUserResponse();
+                response.BookingsByUser = await _bookingRepository.GetBookingsByUser(Email); ;
+
+                if (response.BookingsByUser != null)
+                {
+                    response.Code = 200;
+                    response.Message = APISuccessCodes.GET_ACCOMMODATION_SUCCESS;
+                }
+                return response;
+            }
+            catch (GetRequestException ex)
+            {
+                throw new GetException(ex.Message);
+            }
+        }
+        /*// DELETE: api/ToDoes/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteToDo(int id)
+        {
+            var toDo = await _context.ToDos.FindAsync(id);
+            if (toDo == null)
+            {
+                return NotFound();
+            }
+
+            _context.ToDos.Remove(toDo);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool ToDoExists(int id)
+        {
+            return _context.ToDos.Any(e => e.Id == id);
+        }*/
+        public async Task<DeleteBookingResponse> DeleteBooking(int ID)
+        {
+            try
+            {
+                DeleteBookingResponse response = new DeleteBookingResponse();
+                response.noError = await _bookingRepository.DeleteBooking(ID); ;
+
+                if (response.noError == true)
+                {
+                    response.Code = 200;
+                    response.Message = APISuccessCodes.GET_ACCOMMODATION_SUCCESS;
+                }
+                else
+                {
+                    response.Code = 500;
+                    response.Message = "no booking with such id";
+                }
+                return response;
+            }
+            catch (GetRequestException ex)
+            {
+                throw new GetException(ex.Message);
+            }
+        }
+
+
     }
+
+
 }
