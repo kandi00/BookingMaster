@@ -1,7 +1,6 @@
 package com.example.bookingmaster.ui.accommodation
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -78,7 +77,8 @@ class BookFragment : Fragment() {
             constraintsBuilderRange.setValidator(DateValidatorPointForward.from(fromDateSelection!!))
         } else {
             val dateValidatorMin: DateValidator = DateValidatorPointForward.now()
-            val dateValidatorMax: DateValidator = DateValidatorPointBackward.before(toDateSelection!!)
+            val dateValidatorMax: DateValidator =
+                DateValidatorPointBackward.before(toDateSelection!!)
             val listValidators = ArrayList<DateValidator>()
             listValidators.add(dateValidatorMin)
             listValidators.add(dateValidatorMax)
@@ -120,30 +120,21 @@ class BookFragment : Fragment() {
 
         sendButton.setOnClickListener {
 
-            if (true) {
-                errorMsg = "Your chek-out date must be after your check-in date"
-                val back = AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(errorMsg)
-                    .setPositiveButton("Ok") { dialog, _ -> dialog.cancel() }
-                    .create()
-                back.show()
-            } else {
-                val booking = BookingRequest(
-                    fromDate,
-                    toDate,
-                    currentRoom!!.id,
-                    1
-                )
-                try {
-                    //listViewModel.addBooking(booking)
-                    Snackbar.make(binding.root, "Successful booking!", Snackbar.LENGTH_LONG)
-                        .show()
-                    findNavController().navigate(R.id.action_bookFragment_to_roomFragment)
-                    Log.i("booking", booking.toString())
-                } catch (e: Exception) {
-                    Log.d("BookFragment", "Exception while adding new booking: $e")
-                }
+
+            val booking = BookingRequest(
+                fromDate,
+                toDate,
+                currentRoom!!.id,
+                1
+            )
+            try {
+                listViewModel.addBooking(booking)
+                Snackbar.make(binding.root, "Successful booking!", Snackbar.LENGTH_LONG)
+                    .show()
+                findNavController().navigate(R.id.action_bookFragment_to_roomFragment)
+                Log.i("booking", booking.toString())
+            } catch (e: Exception) {
+                Log.d("BookFragment", "Exception while adding new booking: $e")
             }
         }
     }

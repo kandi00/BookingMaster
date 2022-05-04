@@ -9,30 +9,41 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp">
 
+        <ImageView
+            android:id="@+id/iv_calendar"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/calendar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_from_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginTop="150dp"
             android:padding="20dp"
             android:hint="No check-in date"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_calendar"/>
 
         <Button
             android:id="@+id/button_from_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/dirtyWhite"
             android:text="Pick your check-in date"
             android:textColor="@color/black"
             android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_from_date"/>
 
         <TextView
@@ -41,11 +52,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="20dp"
             android:hint="No check-out date"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_from_date"/>
 
         <Button
@@ -53,12 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/dirtyWhite"
             android:text="Pick your check-out date"
             android:textColor="@color/black"
             android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_to_date"/>
 
         <Button
@@ -67,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/BlueGreen"
             android:text="Send"
             android:textColor="@color/white"
