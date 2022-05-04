@@ -20,8 +20,7 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
     var token: String
     init {
 
-        //token = "Bearer ${sharedPref.getString("token", "").toString()}"
-        token="asd"
+        token = "Bearer ${sharedPref.getString("token", "").toString()}"
         Log.d(tag, "ListViewModel - token: ${token}")
 
         getDefaultAccommodations()
