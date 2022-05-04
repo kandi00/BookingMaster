@@ -21,7 +21,7 @@ namespace ApiHeroku.Services
             {
                 from_date = newBooking.from_date,
                 to_date = newBooking.to_date,
-                booking_date = DateTime.Now,
+                booking_date = DateOnly.FromDateTime(DateTime.Now),
                 RoomId = newBooking.RoomId,
                 UserId = newBooking.UserId
             };

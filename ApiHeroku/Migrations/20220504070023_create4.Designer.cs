@@ -3,6 +3,7 @@ using System;
 using ApiHeroku.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiHeroku.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220504070023_create4")]
+    partial class create4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,14 +69,14 @@ namespace ApiHeroku.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.Property<DateOnly>("booking_date")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("booking_date")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("from_date")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("from_date")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("to_date")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("to_date")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ID");
 

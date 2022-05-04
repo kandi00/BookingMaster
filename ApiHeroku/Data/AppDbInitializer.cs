@@ -10,6 +10,22 @@ namespace ApiHeroku.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
+
+                if (!context.Bookings.Any())
+                {
+                    context.Bookings.AddRangeAsync(
+                        new Booking()
+                        {
+                            from_date = DateOnly.FromDateTime(DateTime.Now),
+                            to_date = DateOnly.FromDateTime(DateTime.Now).AddDays(4),
+                            booking_date = DateOnly.FromDateTime(DateTime.Now),
+                            RoomId = 1,
+                            UserId = 1
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
                 if (!context.UserInfosExample.Any())
                 {
                     context.UserInfosExample.AddRangeAsync(

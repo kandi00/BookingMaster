@@ -7,6 +7,7 @@ namespace ApiHeroku.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+            
         }
 
         //for the auth example
@@ -64,7 +65,7 @@ namespace ApiHeroku.Data
             //for authentication
             OnModelCreatingPartial(modelBuilder);
         }
-
+        
         //for authentication
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
