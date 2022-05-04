@@ -48,7 +48,7 @@ class AccommodationDataAdapter(
         holder.textViewLocation.text = currentItem.location
         val accommodationTypes = mapOf(0 to "Hotel", 1 to "Apartment", 2 to "Resort", 3 to "Hostel", 4 to "Cabin")
         holder.textViewType.text = accommodationTypes[currentItem.type]
-        holder.textViewCapacity.text = "${currentItem.total_Number_Of_Rooms} ${holder.textViewCapacity.text}"
+        holder.textViewCapacity.text = "${currentItem.total_Number_Of_Rooms} rooms"
     }
 
     override fun getItemCount() = list.size

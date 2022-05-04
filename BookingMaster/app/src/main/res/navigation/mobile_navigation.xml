@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/nav_accommodation"
-        android:name="com.example.bookingmaster.ui.gallery.AccommodationsFragment"
+        android:name="com.example.bookingmaster.ui.accommodation.AccommodationsFragment"
         android:label="Accommodations"
         tools:layout="@layout/fragment_accommodation">
         <action
@@ -35,9 +35,13 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/roomFragment"
-        android:name="com.example.bookingmaster.ui.gallery.RoomFragment"
+        android:name="com.example.bookingmaster.ui.accommodation.RoomFragment"
         android:label="Find your room"
-        tools:layout="@layout/fragment_room" />
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_roomFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
     <fragment
         android:id="@+id/discoverPlacesFragment"
         android:name="com.example.bookingmaster.ui.DiscoverPlacesFragment"
@@ -46,5 +50,14 @@
         <action
             android:id="@+id/action_discoverPlacesFragment_to_nav_accommodation"
             app:destination="@id/nav_accommodation" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.example.bookingmaster.ui.accommodation.BookFragment"
+        android:label="Booking"
+        tools:layout="@layout/fragment_book" >
+        <action
+            android:id="@+id/action_bookFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
     </fragment>
 </navigation>

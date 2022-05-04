@@ -10,14 +10,29 @@ import com.example.bookingmaster.R
 import com.example.bookingmaster.model.Room
 
 class RoomDataAdapter(
-    private var list: ArrayList<Room>
+    private var list: ArrayList<Room>,
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RoomDataAdapter.RoomViewHolder>() {
 
-    inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //        View.OnClickListener {
+    interface OnItemClickListener{
+        fun onBookNowButtonClick(room: Room)
+    }
+
+    inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textViewRoomCapacity: TextView = itemView.findViewById(R.id.tv_room_capacity)
         val textViewPrice: TextView = itemView.findViewById(R.id.tv_price)
         val button : Button = itemView.findViewById(R.id.button_book_now)
+
+        init{
+            button.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val currentPosition = this.adapterPosition
+            when(v?.id){
+                button.id -> listener.onBookNowButtonClick(list[currentPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
