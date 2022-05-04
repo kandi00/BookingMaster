@@ -44,11 +44,11 @@ namespace ApiHeroku.Controllers
         }
 
         [HttpGet, Route("location")]
-        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByLocation([FromHeader] string? Location)
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByLocation([FromHeader] string? Location, [FromHeader] DateTime FromDate, [FromHeader] DateTime ToDate)
         {
             try
             {
-                AccommodationsResponse result = await _accomodationService.GetAccomodationsByLocation(Location);
+                AccommodationsResponse result = await _accomodationService.GetAccomodationsByLocation(Location, FromDate, ToDate);
                 return Ok(result);
 
             }
@@ -64,11 +64,11 @@ namespace ApiHeroku.Controllers
         }
 
         [HttpGet, Route("name")]
-        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByName([FromHeader] string? Name)
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByName([FromHeader] string? Name, [FromHeader] DateTime FromDate, [FromHeader] DateTime ToDate)
         {
             try
             {
-                AccommodationsResponse result = await _accomodationService.GetAccomodationsByName(Name);
+                AccommodationsResponse result = await _accomodationService.GetAccomodationsByName(Name, FromDate, ToDate);
                 return Ok(result);
 
             }

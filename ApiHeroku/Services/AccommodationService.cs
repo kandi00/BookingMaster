@@ -34,12 +34,12 @@ namespace ApiHeroku.Services
             }
         }
 
-        public async Task<AccommodationsResponse> GetAccomodationsByLocation(string Location)
+        public async Task<AccommodationsResponse> GetAccomodationsByLocation(string Location, DateTime FromDate, DateTime ToDate)
         {
             try
             {
                 AccommodationsResponse response = new AccommodationsResponse();
-                response.Accomodations = await _accomodationRepository.GetAccomodationsByLocation(Location); ;
+                response.Accomodations = await _accomodationRepository.GetAccomodationsByLocation(Location, FromDate, ToDate); ;
 
                 if (response.Accomodations != null)
                 {
@@ -54,12 +54,12 @@ namespace ApiHeroku.Services
             }
         }
 
-        public async Task<AccommodationsResponse> GetAccomodationsByName(string? Name)
+        public async Task<AccommodationsResponse> GetAccomodationsByName(string? Name, DateTime FromDate, DateTime ToDate)
         {
             try
             {
                 AccommodationsResponse response = new AccommodationsResponse();
-                response.Accomodations = await _accomodationRepository.GetAccomodationsByName(Name);
+                response.Accomodations = await _accomodationRepository.GetAccomodationsByName(Name, FromDate, ToDate);
 
                 if (response.Accomodations != null)
                 {
@@ -73,5 +73,5 @@ namespace ApiHeroku.Services
                 throw new GetException(ex.Message);
             }
         }
-    }
+}
 }
