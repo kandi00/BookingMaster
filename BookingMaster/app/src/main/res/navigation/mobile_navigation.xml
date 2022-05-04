@@ -33,9 +33,13 @@
 
     <fragment
         android:id="@+id/nav_search_for_accommodation"
-        android:name="com.example.bookingmaster.ui.slideshow.SlideshowFragment"
+        android:name="com.example.bookingmaster.ui.slideshow.FindAccommodation"
         android:label="Search for accommodation"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_findaccommodation" >
+        <action
+            android:id="@+id/action_nav_search_for_accommodation_to_nav_accommodation"
+            app:destination="@id/nav_accommodation" />
+    </fragment>
     <fragment
         android:id="@+id/roomFragment"
         android:name="com.example.bookingmaster.ui.accommodation.RoomFragment"

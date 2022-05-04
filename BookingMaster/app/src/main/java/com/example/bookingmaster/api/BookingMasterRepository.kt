@@ -11,8 +11,12 @@ import retrofit2.http.Header
 
 class BookingMasterRepository {
 
-    suspend fun getAccommodationsByLocation(@Header ("Authorization") token: String,@Header("location") location: String): AccommodationResponse {
-        return RetrofitInstance.api.getAccommodationsByLocation(token,location)
+    suspend fun getAccommodationsByLocation(@Header ("Authorization") token: String,@Header("location") location: String, @Header("fromDate") fromDate: String, @Header("toDate") toDate: String): AccommodationResponse {
+        return RetrofitInstance.api.getAccommodationsByLocation(token,location, fromDate, toDate)
+    }
+
+    suspend fun getAccommodationsByName(@Header("Authorization") token: String,@Header("name") name: String, @Header("fromDate") fromDate: String, @Header("toDate") toDate: String): AccommodationResponse {
+        return RetrofitInstance.api.getAccommodationsByName(token,name,fromDate,toDate)
     }
 
     suspend fun login(request: LoginRequest) : String {
