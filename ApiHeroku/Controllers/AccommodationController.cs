@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiHeroku.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AccommodationController : ControllerBase
@@ -44,11 +44,11 @@ namespace ApiHeroku.Controllers
         }
 
         [HttpGet, Route("location")]
-        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByLocation([FromHeader] string? Location, [FromHeader] DateTime FromDate, [FromHeader] DateTime ToDate)
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByLocation([FromHeader] string? Location, [FromHeader] string? FromDate, [FromHeader] string? ToDate)
         {
             try
             {
-                AccommodationsResponse result = await _accomodationService.GetAccomodationsByLocation(Location, FromDate, ToDate);
+                AccommodationsResponse result = await _accomodationService.GetAccomodationsByLocation(Location, DateOnly.Parse(FromDate), DateOnly.Parse(ToDate));
                 return Ok(result);
 
             }
@@ -64,11 +64,11 @@ namespace ApiHeroku.Controllers
         }
 
         [HttpGet, Route("name")]
-        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByName([FromHeader] string? Name, [FromHeader] DateTime FromDate, [FromHeader] DateTime ToDate)
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodationsByName([FromHeader] string? Name, [FromHeader] string? FromDate, [FromHeader] string? ToDate)
         {
             try
             {
-                AccommodationsResponse result = await _accomodationService.GetAccomodationsByName(Name, FromDate, ToDate);
+                AccommodationsResponse result = await _accomodationService.GetAccomodationsByName(Name, DateOnly.Parse(FromDate), DateOnly.Parse(ToDate));
                 return Ok(result);
 
             }

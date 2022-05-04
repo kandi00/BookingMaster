@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_discoverPlacesFragment"
             app:destination="@id/discoverPlacesFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_userBookingsFragment2"
+            app:destination="@id/userBookingsFragment" />
     </fragment>
 
     <fragment
@@ -85,4 +88,9 @@
             android:id="@+id/action_bookFragment_to_roomFragment"
             app:destination="@id/roomFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userBookingsFragment"
+        android:name="com.example.bookingmaster.UserBookingsFragment"
+        android:label="fragment_user_bookings"
+        tools:layout="@layout/fragment_user_bookings" />
 </navigation>

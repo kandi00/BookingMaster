@@ -34,7 +34,7 @@ namespace ApiHeroku.Services
             }
         }
 
-        public async Task<AccommodationsResponse> GetAccomodationsByLocation(string Location, DateTime FromDate, DateTime ToDate)
+        public async Task<AccommodationsResponse> GetAccomodationsByLocation(string Location, DateOnly FromDate, DateOnly ToDate)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace ApiHeroku.Services
             }
         }
 
-        public async Task<AccommodationsResponse> GetAccomodationsByName(string? Name, DateTime FromDate, DateTime ToDate)
+        public async Task<AccommodationsResponse> GetAccomodationsByName(string? Name, DateOnly FromDate, DateOnly ToDate)
         {
             try
             {

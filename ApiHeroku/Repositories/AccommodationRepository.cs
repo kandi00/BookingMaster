@@ -28,7 +28,7 @@ namespace ApiHeroku.Repositories
             }
         }
 
-        public async Task<IEnumerable<Accommodation>> GetAccomodationsByLocation(string? Location, DateTime FromDate, DateTime ToDate)
+        public async Task<IEnumerable<Accommodation>> GetAccomodationsByLocation(string? Location, DateOnly FromDate, DateOnly ToDate)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace ApiHeroku.Repositories
             }
         }
 
-        public async Task<IEnumerable<Accommodation>> GetAccomodationsByName(string? Name, DateTime FromDate, DateTime ToDate)
+        public async Task<IEnumerable<Accommodation>> GetAccomodationsByName(string? Name, DateOnly FromDate, DateOnly ToDate)
         {
             try
             {

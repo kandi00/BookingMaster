@@ -5,7 +5,7 @@ namespace ApiHeroku.Services
     public interface IAccommodationService
     {
         public Task<AccommodationsResponse> GetAccomodations();
-        public Task<AccommodationsResponse> GetAccomodationsByLocation(string? Location, DateTime FromDate, DateTime ToDate);
-        public Task<AccommodationsResponse> GetAccomodationsByName(string? Name, DateTime FromDate, DateTime ToDate);
+        public Task<AccommodationsResponse> GetAccomodationsByLocation(string? Location, DateOnly FromDate, DateOnly ToDate);
+        public Task<AccommodationsResponse> GetAccomodationsByName(string? Name, DateOnly FromDate, DateOnly ToDate);
     }
 }
