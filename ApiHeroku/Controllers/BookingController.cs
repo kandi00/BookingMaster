@@ -23,6 +23,7 @@ namespace ApiHeroku.Controllers
         [HttpPost,Route("add-new-booking")]
         public async Task<ActionResult<Booking>> AddNewBooking([FromBody] BookingViewModel newBooking)
         {
+
             try
             {
                 BookingResponse result = await _bookingService.AddNewBooking(newBooking);
