@@ -35,6 +35,7 @@ namespace ApiHeroku.Repositories
                 //get booked rooms
                 var bookedRooms = _context.Bookings
                     .Where(a => (a.from_date <= FromDate && FromDate < a.to_date) || (a.from_date < ToDate && ToDate <= a.to_date))
+                    .Where(a => (FromDate <= a.from_date && a.from_date < ToDate) || (FromDate < a.to_date && a.to_date <= ToDate))
                     .Select(a => a.RoomId)
                     .ToListAsync().Result;
                 //get accommodations with free rooms
@@ -68,6 +69,7 @@ namespace ApiHeroku.Repositories
                 //get booked rooms
                 var bookedRooms = _context.Bookings
                     .Where(a => (a.from_date <= FromDate && FromDate < a.to_date) || (a.from_date < ToDate && ToDate <= a.to_date))
+                    .Where(a => (FromDate <= a.from_date && a.from_date < ToDate) || (FromDate < a.to_date && a.to_date <= ToDate))
                     .Select(a => a.RoomId)
                     .ToListAsync().Result;
                 var accommodations = _context.Accomodations

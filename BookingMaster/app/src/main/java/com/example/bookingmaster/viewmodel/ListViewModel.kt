@@ -1,6 +1,5 @@
 package com.example.bookingmaster.viewmodel
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookingmaster.api.BookingMasterRepository
 import com.example.bookingmaster.model.*
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ListViewModel(private val repository: BookingMasterRepository, private val sharedPref: SharedPreferences) : ViewModel() {
 
@@ -18,6 +19,8 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
     var accommodationsDebrecen: MutableLiveData<ArrayList<Accommodation>> = MutableLiveData()
     var currentAccommodation: Accommodation? = null
     var token: String
+    lateinit var currentDate: String
+    lateinit var currentDate_plus_1year: String
     var currentRoom: Room? = null
 
     var userBookings: MutableLiveData<ArrayList<BookingFull>> = MutableLiveData()
@@ -26,7 +29,7 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
 
         token = "Bearer ${sharedPref.getString("token", "").toString()}"
         Log.d(tag, "ListViewModel - token: ${token}")
-
+        getCurrectDate()
         getDefaultAccommodations()
         getUserBookings()
     }
@@ -49,14 +52,13 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
     private fun getDefaultAccommodations() {
         viewModelScope.launch {
             try {
-
-
-                var result = repository.getAccommodationsByLocation(token = token,"Budapest")
+                var result = repository.getAccommodationsByLocation(token = token,"Budapest", currentDate, currentDate_plus_1year)
                 accommodations.value = result.accomodations as ArrayList<Accommodation>
                 accommodationsBudapest.value = accommodations.value
 
-                result = repository.getAccommodationsByLocation(token = token,"Debrecen")
+                result = repository.getAccommodationsByLocation(token = token,"Debrecen", currentDate, currentDate_plus_1year)
                 accommodationsDebrecen.value = result.accomodations as ArrayList<Accommodation>
+                Log.i(currentDate, currentDate_plus_1year)
 
                 Log.d(tag, "ListViewModel - #accommodations:  ${result.accomodations}")
             } catch (e: Exception) {
@@ -68,8 +70,40 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
     fun getAccommodations(location : String) {
         viewModelScope.launch {
             try {
+                var result = repository.getAccommodationsByLocation(token = token, location, currentDate, currentDate_plus_1year)
+                accommodations.value = result.accomodations as ArrayList<Accommodation>
+                Log.d(tag, "ListViewModel - #accommodations:  ${result.accomodations}")
+            } catch (e: Exception) {
+                Log.d(tag, "ListViewModel exception: $e")
+            }
+        }
+    }
 
-                var result = repository.getAccommodationsByLocation(token = token, location)
+    fun getCurrectDate(){
+        var c = Calendar.getInstance()
+        var month = c.get(Calendar.MONTH).toString()
+        if(month.length<2) {month = '0'+month}
+        var day = c.get(Calendar.DAY_OF_MONTH).toString()
+        if(day.length<2) {day = '0'+day}
+        var date = c.get(Calendar.YEAR).toString() + "-" + month + "-" + day
+        currentDate = date
+
+        c = Calendar.getInstance()
+        c.add(Calendar.YEAR, 1)
+        month = c.get(Calendar.MONTH).toString()
+        if(month.length<2) {month = '0'+month}
+        day = c.get(Calendar.DAY_OF_MONTH).toString()
+        if(day.length<2) {day = '0'+day}
+        date = c.get(Calendar.YEAR).toString() + "-" + month + "-" + day
+        currentDate_plus_1year = date
+    }
+
+
+    fun getAccommodations(name : String, fromDate : String, toDate : String) {
+        viewModelScope.launch {
+            try {
+
+                var result = repository.getAccommodationsByName(token = token, name, fromDate, toDate)
                 accommodations.value = result.accomodations as ArrayList<Accommodation>
                 Log.d(tag, "ListViewModel - #accommodations:  ${result.accomodations}")
             } catch (e: Exception) {
