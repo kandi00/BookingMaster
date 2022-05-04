@@ -3,7 +3,7 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - frontend_authentication
+      - main
 
 jobs:
   build:
