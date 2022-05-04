@@ -8,6 +8,12 @@ data class User(
     var password: String = "",
 )
 
+@JsonClass(generateAdapter = true)
+data class UserFull(
+    var displayName: String,
+    var userName: String,
+    var email: String
+)
 
 @JsonClass(generateAdapter = true)
 data class LoginRequest (

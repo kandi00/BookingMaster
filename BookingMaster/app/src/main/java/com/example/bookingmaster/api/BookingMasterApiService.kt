@@ -1,15 +1,8 @@
 package com.example.bookingmaster.api
 
-import com.example.bookingmaster.model.AccommodationResponse
-import com.example.bookingmaster.model.BookingRequest
-import com.example.bookingmaster.model.BookingResponse
-import com.example.bookingmaster.model.LoginRequest
-import com.example.bookingmaster.model.RegistrationRequest
-import retrofit2.http.GET
+import com.example.bookingmaster.model.*
 import com.example.bookingmaster.util.BackendConstants
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface BookingMasterApiService {
     /** get accommodations */
@@ -28,4 +21,10 @@ interface BookingMasterApiService {
     /** post booking */
     @POST(BackendConstants.POST_BOOKING)
     suspend fun addBooking(@Body bookingRequest : BookingRequest): BookingResponse
+
+    @GET(BackendConstants.GET_USER_BOOKINGS)
+    suspend fun getUserBookings(@Header ("email") email: String) : UserBookingsResponse
+
+    @DELETE(BackendConstants.DELETE_BOOKING)
+    suspend fun DeleteBooking(@Header ("ID") ID: Int) : DeleteBookingResponse
 }

@@ -1,11 +1,7 @@
 package com.example.bookingmaster.api
 
-import com.example.bookingmaster.model.AccommodationResponse
-import com.example.bookingmaster.model.LoginRequest
-import com.example.bookingmaster.model.RegistrationRequest
+import com.example.bookingmaster.model.*
 
-import com.example.bookingmaster.model.BookingRequest
-import com.example.bookingmaster.model.BookingResponse
 import retrofit2.http.Body
 import retrofit2.http.Header
 
@@ -26,4 +22,11 @@ class BookingMasterRepository {
         return RetrofitInstance.api.addBooking(bookingRequest)
     }
 
+    suspend fun getUserBookings(@Header("email")email: String): UserBookingsResponse {
+        return RetrofitInstance.api.getUserBookings(email)
+    }
+
+    suspend fun DeleteBooking(@Header("ID")ID: Int): DeleteBookingResponse {
+        return RetrofitInstance.api.DeleteBooking(ID)
+    }
 }

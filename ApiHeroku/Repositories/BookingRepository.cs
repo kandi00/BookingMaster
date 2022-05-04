@@ -70,26 +70,7 @@ namespace ApiHeroku.Repositories
             }
         }
 
-        /*// DELETE: api/ToDoes/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteToDo(int id)
-        {
-            var toDo = await _context.ToDos.FindAsync(id);
-            if (toDo == null)
-            {
-                return NotFound();
-            }
 
-            _context.ToDos.Remove(toDo);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ToDoExists(int id)
-        {
-            return _context.ToDos.Any(e => e.Id == id);
-        }*/
         public async Task<bool> DeleteBooking(int ID)
         {
             var booking = await _context.Bookings.FindAsync(ID);

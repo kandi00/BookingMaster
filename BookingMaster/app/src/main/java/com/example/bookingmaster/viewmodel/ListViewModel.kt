@@ -7,9 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookingmaster.api.BookingMasterRepository
-import com.example.bookingmaster.model.Accommodation
-import com.example.bookingmaster.model.BookingRequest
-import com.example.bookingmaster.model.Room
+import com.example.bookingmaster.model.*
 import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: BookingMasterRepository, private val sharedPref: SharedPreferences) : ViewModel() {
@@ -22,12 +20,30 @@ class ListViewModel(private val repository: BookingMasterRepository, private val
     var token: String
     var currentRoom: Room? = null
 
+    var userBookings: MutableLiveData<ArrayList<BookingFull>> = MutableLiveData()
+
     init {
 
         token = "Bearer ${sharedPref.getString("token", "").toString()}"
         Log.d(tag, "ListViewModel - token: ${token}")
 
         getDefaultAccommodations()
+        getUserBookings()
+    }
+
+    private fun getUserBookings() {
+        viewModelScope.launch {
+            try{
+                var email = sharedPref.getString("email","").toString()
+                var result = repository.getUserBookings(email)
+                userBookings.value = result.bookingsByUser as ArrayList<BookingFull>
+
+                Log.d(tag, "ListViewModel user bookings result: ${result}")
+
+            }catch(e: Exception){
+                Log.d(tag, "ListViewModel exception: $e")
+            }
+        }
     }
 
     private fun getDefaultAccommodations() {

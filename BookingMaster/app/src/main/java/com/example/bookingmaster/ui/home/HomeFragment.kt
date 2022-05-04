@@ -21,6 +21,7 @@ class HomeFragment : Fragment() {
     private lateinit var DiscoverPlacesButton: Button
     private lateinit var SearchForAccommodationButton: Button
     private lateinit var listViewModel: ListViewModel
+    private lateinit var userBookingsButton: Button
 
     private val binding get() = _binding!!
 
@@ -48,6 +49,7 @@ class HomeFragment : Fragment() {
     private fun initializeElements() {
         DiscoverPlacesButton = binding.DiscoverPlacesButton
         SearchForAccommodationButton = binding.SearchForAccommodationButton
+        userBookingsButton = binding.userBookingsButtonHomefragment
     }
 
     private fun setListeners() {
@@ -56,6 +58,9 @@ class HomeFragment : Fragment() {
         }
         SearchForAccommodationButton.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_nav_slideshow)
+        }
+        userBookingsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_home_to_userBookingsFragment2)
         }
     }
 
